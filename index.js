@@ -40,7 +40,11 @@ io.on("connection", socket => {
     socket.on("textData", (data) => {
         io.to(data.room).emit("getTextData", data.text);
     })
+    socket.on("getTitle", (data) => {
+        io.to(data.room).emit("getTitle", data.title);
+    })
     socket.on("cleanRoom", (room) => {
+        io.to(room).emit("end");
         io.socketsLeave(room);
         io.emit("get-all-rooms-response", getActiveRooms());
     })
