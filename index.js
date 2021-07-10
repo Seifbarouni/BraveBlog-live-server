@@ -43,6 +43,9 @@ io.on("connection", socket => {
     socket.on("getTitle", (data) => {
         io.to(data.room).emit("getTitle", data.title);
     })
+    socket.on("comment", (data) => {
+        io.to(data.room).emit("comment", { user: data.user, comment: data.comment });
+    })
     socket.on("cleanRoom", (room) => {
         io.to(room).emit("end");
         io.socketsLeave(room);
