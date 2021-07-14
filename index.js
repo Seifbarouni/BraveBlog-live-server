@@ -8,7 +8,7 @@ const server = require("express")()
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://wonderful-knuth-debaec.netlify.app",
         method: ["GET", "POST"],
     },
 })
