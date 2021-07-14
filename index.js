@@ -1,7 +1,12 @@
-const app = require("express")();
-const httpServer = require("https").createServer(app);
+const PORT = process.env.PORT || 3004;
+const INDEX = '/index.html';
 
-const io = require("socket.io")(httpServer, {
+const server = express()
+    .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+    .listen(PORT, () => console.log(`Listening on ${PORT}`));
+//const httpServer = require("https").createServer(app);
+
+const io = require("socket.io")(server, {
     cors: {
         origin: "http://localhost:3000",
         method: ["GET", "POST"],
@@ -55,5 +60,3 @@ io.on("connection", socket => {
         io.emit("get-all-rooms-response", getActiveRooms());
     })
 })
-
-httpServer.listen(3001)
