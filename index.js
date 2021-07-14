@@ -1,5 +1,5 @@
 const app = require("express")();
-const httpServer = require("http").createServer(app);
+const httpServer = require("https").createServer(app);
 
 const io = require("socket.io")(httpServer, {
     cors: {
