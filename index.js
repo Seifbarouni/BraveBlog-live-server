@@ -59,4 +59,7 @@ io.on("connection", socket => {
         io.socketsLeave(room);
         io.emit("get-all-rooms-response", getActiveRooms());
     })
+    socket.on("leave", (room) => {
+        socket.leave(room);
+    })
 })
